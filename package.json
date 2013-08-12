@@ -1,5 +1,5 @@
 {
-    "name": "courier",
+    "name": "express-courier",
     "version": "0.0.1",
     "description": "dynamic route for express",
     "main": "lib/index.js",
