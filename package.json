@@ -1,15 +1,20 @@
 {
     "name": "express-courier",
     "version": "0.0.1",
-    "description": "dynamic route for express",
-    "main": "lib/index.js",
+    "description": "let you route your application based on folder structure for express",
+    "main": "./lib/index.js",
     "scripts": {
         "test": "mocha -R spec"
     },
-    "repository": "",
+    "repository": {
+        "type": "git",
+        "url": "https://githbu.com/villadora/express-courier.git"
+    },
     "keywords": [
         "routes",
-        "express"
+        "express",
+        "mvc",
+        "controller"
     ],
     "dependencies": {
         "express": "~3.3.4",
@@ -28,6 +33,9 @@
         "grunt-contrib-watch": "0.3.x"
     },
     "readmeFilename":"README.md",
-    "author": "wei.gao <jky239@gmail.com>",
+    "author":  {
+        "name": "wei.gao",
+        "email": "jky239@gmail.com"
+    },
     "license": "MIT"
 }
