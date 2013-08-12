@@ -1,0 +1,33 @@
+{
+    "name": "courier",
+    "version": "0.0.1",
+    "description": "dynamic route for express",
+    "main": "lib/index.js",
+    "scripts": {
+        "test": "mocha -R spec"
+    },
+    "repository": "",
+    "keywords": [
+        "routes",
+        "express"
+    ],
+    "dependencies": {
+        "express": "~3.3.4",
+        "express-namespace": ""
+    },
+    "devDependencies": {
+        "grunt": "~0.4.1",
+        "jshint": "~2.1.9",
+        "mocha": "~1.12.0",
+        "chai": "~1.7.2",
+        "supertest": "*",
+        "grunt-contrib-copy": "0.4.x",
+        "grunt-contrib-concat": "0.1.x",
+        "grunt-contrib-jshint": "0.3.x",
+        "grunt-contrib-clean": "0.4.x",
+        "grunt-contrib-watch": "0.3.x"
+    },
+    "readmeFilename":"README.md",
+    "author": "wei.gao <jky239@gmail.com>",
+    "license": "MIT"
+}
