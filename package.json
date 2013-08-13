@@ -1,6 +1,6 @@
 {
     "name": "express-courier",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "let you route your application based on folder structure for express",
     "main": "./lib/index.js",
     "scripts": {
@@ -17,8 +17,7 @@
         "controller"
     ],
     "dependencies": {
-        "express": "~3.3.4",
-        "express-namespace": ""
+        "express-namespace": "0.1.x"
     },
     "devDependencies": {
         "grunt": "~0.4.1",

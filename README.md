@@ -1,6 +1,6 @@
 # Express-Courier
 
-The _express-courier_ module provides ability to seperate routes into different files. It's built on '[express](https://github.com/visionmedia/express)' and '[express-namesapce](https://github.com/visionmedia/express-namespace)'.
+The _express-courier_ module provides ability to seperate routes into different files. It's built on '[express](https://github.com/visionmedia/express)' and '[express-namespace](https://github.com/visionmedia/express-namespace)'.
 You can use it to build your own controllers on express.
 
 [![Build Status](https://travis-ci.org/villadora/express-courier.png?branch=master)](https://travis-ci.org/villadora/express-courier)
