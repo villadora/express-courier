@@ -13,8 +13,18 @@ npm:
    
 ## Usage
 
-Go to [example](example/) folder to view examples.
+To use _express-courier_, just add:
 
+```javascript
+require('epress-courier');
+...
+app.courier(<path of route files>);
+...
+```
+
+Then you can write your file under the _path_of_route_files_.
+
+Go to [example](example/) folder to view examples.
 
 The directory structure like following:
 
@@ -55,7 +65,6 @@ If you want to apply a middleware to some url, you can put a javascript flie nam
 See [group.middleware.js](example/team/group.v/group.middleware.js)
 or add a _middleware_ property to the _modeule.exports_.
 See [query.js](example/query.js)
-
 
 
 ## Running Tests
