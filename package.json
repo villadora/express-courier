@@ -20,6 +20,7 @@
         "express-namespace": "0.1.x"
     },
     "devDependencies": {
+        "express": "3.x",
         "grunt": "~0.4.1",
         "jshint": "~2.1.9",
         "mocha": "~1.12.0",
