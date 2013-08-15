@@ -24,11 +24,16 @@ describe('app.courier(path, opts)', function(){
 
 
     it('use courier: simple routing', function(done) {
+        done = pending(2, done);
         app.courier(join(__dirname, '../example'));
 
         request(app)
             .get('/query')
             .expect('GET query', done);
+        
+        request(app)
+            .post('/user/profile')
+            .expect('GET profile', done);
     });
 
 
