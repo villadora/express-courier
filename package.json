@@ -1,6 +1,6 @@
 {
     "name": "express-courier",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "let you route your application based on folder structure for express",
     "main": "./lib/index.js",
     "scripts": {

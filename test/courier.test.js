@@ -24,21 +24,17 @@ describe('app.courier(path, opts)', function(){
 
 
     it('use courier: simple routing', function(done) {
-        done = pending(2, done);
         app.courier(join(__dirname, '../example'));
 
         request(app)
             .get('/query')
-            .expect('GET query', done);
-        
-        request(app)
-            .post('/user/profile')
-            .expect('GET profile', done);
+            .expect('GET query').
+            end(done);
     });
 
 
     it('use courier: with variable', function(done) {
-        done = pending(3, done);
+        done = pending(4, done);
         app.courier(join(__dirname, '../example'));
 
         request(app)
@@ -51,7 +47,12 @@ describe('app.courier(path, opts)', function(){
 
         request(app)
             .get('/query/3')
-            .expect('GET query 3', done);
+            .expect(200)
+            .expect('Get what are you querying? 3', done);
+
+        request(app)
+            .post('/user/3/profile')
+            .expect('GET profile for 3', done);
     });
 
     
@@ -69,7 +70,7 @@ describe('app.courier(path, opts)', function(){
     });
 
     it('use courier: middleware', function(done) {
-        done = pending(3, done);
+        done = pending(2, done);
         app.courier(join(__dirname, '../example'));
 
         request(app)
@@ -79,10 +80,6 @@ describe('app.courier(path, opts)', function(){
         request(app)
             .get('/team/4/fetch')
             .expect('GET fetch 4', done);
-
-        request(app)
-            .get('/query/3')
-            .expect('GET query 3', done);
     });
 });
 

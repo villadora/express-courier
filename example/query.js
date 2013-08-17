@@ -9,6 +9,6 @@ module.exports = function(app) {
 };
 
 module.exports.middleware = function(req, res, next) {
-    req.query = "query";
+    req.query = "what are you querying?";
     next();
 };
