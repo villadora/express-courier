@@ -5,6 +5,6 @@ test-server:
 	node test/app.test.js
 
 jshint:
-	@./node_modules/.bin/jshint Gruntfile.js lib/*.js test/*.js example/**/*.js
+	@./node_modules/.bin/jshint Gruntfile.js index.js test/*.js example/**/*.js
 
 .PHONY: jshint test

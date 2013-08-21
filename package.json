@@ -1,8 +1,8 @@
 {
     "name": "express-courier",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "let you route your application based on folder structure for express",
-    "main": "./lib/index.js",
+    "main": "./index.js",
     "scripts": {
         "test": "mocha -R spec"
     },
@@ -12,12 +12,10 @@
     },
     "keywords": [
         "routes",
-        "express",
-        "mvc",
-        "controller"
+        "moduleapp",
+        "express"
     ],
     "dependencies": {
-        "express-namespace": "0.1.x"
     },
     "devDependencies": {
         "express": "3.x",

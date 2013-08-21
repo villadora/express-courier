@@ -5,7 +5,7 @@
 var express = require('express'),
 request = require('supertest'),
 assert = require('chai').assert,
-courier = require('../lib'),
+courier = require('../'),
 pending = require('./pending'),
 path = require('path'),
 join = path.join
@@ -16,6 +16,7 @@ describe('app.courier(path, opts)', function(){
 
     beforeEach(function() {
         app = express();
+        app.courier(join(__dirname, '../example'));
     });
 
     it('should contains "courier"', function(){
@@ -24,18 +25,15 @@ describe('app.courier(path, opts)', function(){
 
 
     it('use courier: simple routing', function(done) {
-        app.courier(join(__dirname, '../example'));
-
         request(app)
             .get('/query')
-            .expect('GET query').
-            end(done);
+            .expect('GET query')
+            .end(done);
     });
 
 
     it('use courier: with variable', function(done) {
-        done = pending(4, done);
-        app.courier(join(__dirname, '../example'));
+        done = pending(8, done);
 
         request(app)
             .get('/user/4')
@@ -53,13 +51,7 @@ describe('app.courier(path, opts)', function(){
         request(app)
             .post('/user/3/profile')
             .expect('GET profile for 3', done);
-    });
 
-    
-    it('use courier: index', function(done){
-        done = pending(2, done);
-        app.courier(join(__dirname, '../example'));
-        
         request(app)
             .get('/user')
             .expect('GET all users', done);
@@ -67,19 +59,14 @@ describe('app.courier(path, opts)', function(){
         request(app)
             .del('/user')
             .expect('DELETE all users', done);
-    });
-
-    it('use courier: middleware', function(done) {
-        done = pending(2, done);
-        app.courier(join(__dirname, '../example'));
 
         request(app)
-            .get('/team/4/select/david')
-            .expect('GET select "david" from group 4', done);
-       
+            .get('/team/fetch')
+            .expect('GET team/fetch', done);
+
         request(app)
-            .get('/team/4/fetch')
-            .expect('GET fetch 4', done);
+            .get('/team/4/what')
+            .expect('GET select what from group 4', done);
     });
 });
 

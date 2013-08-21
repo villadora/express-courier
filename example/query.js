@@ -1,4 +1,6 @@
-module.exports = function(app) {
+module.exports = require('express')();
+
+module.exports.courier('/query', function(app) {
     app.get('/', function(req, res) {
         res.send('GET query');
     });
@@ -6,9 +8,9 @@ module.exports = function(app) {
     app.get(':qid', function(req, res) {
         res.send('GET ' + req.query + ' ' + req.params.qid);
     });
-};
 
-module.exports.middleware = function(req, res, next) {
-    req.query = "what are you querying?";
-    next();
-};
+    app.use(function(req, res, next) {
+        req.query = "what are you querying?";
+        next();
+    });
+});

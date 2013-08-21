@@ -1,5 +1,5 @@
 var express = require('express'),
-courier = require('../lib'),
+courier = require('../'),
 path = require('path'),
 join = path.join
 ;
