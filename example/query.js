@@ -5,8 +5,10 @@ module.exports.courier('/query', function(app) {
         res.send('GET query');
     });
 
-    app.get(':qid', function(req, res) {
-        res.send('GET ' + req.query + ' ' + req.params.qid);
+    app.courier('/:qid', function(app) {
+        app.get(function(req, res) {
+            res.send('GET ' + req.query + ' ' + req.params.qid);
+        });
     });
 
     app.use(function(req, res, next) {

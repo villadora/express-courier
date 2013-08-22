@@ -27,7 +27,70 @@ Go to [example](example/) folder to view examples.
 
 The directory/filename will be the name in the routing path; If you want to use the name like params, just put _.v_ after the name of directory/filename and before the extension.
 
-## Running Tests
+### use a directory as routes
+
+You can use directory tree to organize your routes.
+
+    app.courier(__dirname+'/foder');
+
+
+Then you can put files under '/folder':
+
+
+    // /folder/query/index.js
+    module.exports = require('express')();
+    
+    module.exports.get('/:context', function(req, res) {
+        res.send('GET /query/'+req.param.context);
+    });
+
+
+    // /folder/user/index.js
+    module.exports.courier = function(app) {
+        app.get('/all', function(req, res) {
+            res.send('GET /user/all');
+        });
+    };
+
+
+The app will response to:
+
+    GET /query/xxx
+    GET /user/all
+
+In each file, you can use app as normal express application.
+
+### use as express-namespace
+
+Just like express-namespace, but which is more powerful as it use the mount feature in express itself(I guess the 'mount' is not imported when express-namespace was created)
+
+    app.courier('/forum/:id', function(app){
+        app.get('/(view)?', function(req, res){
+            res.send('GET forum ' + req.params.id);
+        });
+      
+        app.get('/edit', function(req, res){
+            res.send('GET forum ' + req.params.id + ' edit page');
+        });
+        
+        app.courier('/thread', function(){
+            app.get('/:tid', function(req, res){
+                res.send('GET forum ' + req.params.id + ' thread ' + req.params.tid);
+            });
+        });
+    });
+
+
+The app will response to:
+
+    GET /forum/12
+    GET /forum/12/view
+    GET /forum/12/edit
+    GET /forum/12/thread/5
+
+
+
+## Test
 
 First install npm dependencies:
 

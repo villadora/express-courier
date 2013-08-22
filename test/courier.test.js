@@ -23,7 +23,6 @@ describe('app.courier(path, opts)', function(){
         assert(typeof(app.courier) === 'function');
     });
 
-
     it('use courier: simple routing', function(done) {
         request(app)
             .get('/query')
@@ -61,12 +60,12 @@ describe('app.courier(path, opts)', function(){
             .expect('DELETE all users', done);
 
         request(app)
-            .get('/team/fetch')
-            .expect('GET team/fetch', done);
+            .get('/team/fetch/4')
+            .expect('GET team/fetch 4', done);
 
         request(app)
             .get('/team/4/what')
-            .expect('GET select what from group 4', done);
+            .expect('GET select "what" from group 4', done);
     });
 });
 

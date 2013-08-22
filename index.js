@@ -4,17 +4,20 @@ path = require('path'),
 join = path.join,
 basename = path.basename,
 existsSync = fs.existsSync || path.existsSync,
-apps = express.application ? [express.application] : [express.HTTPServer.prototype, express.HTTPSServer.prototype] // express 2.x
+application = express.application
 ;
 
 function applyModule(app, ns, module) {
-    if(module.handle && module.set)
+    if(module.handle && module.set) {
         app.use(ns, module);
-    else if(typeof module === 'function') {
+        return true;
+    } else if(typeof module.courier === 'function') {
         var mapp = express();
-        module(mapp);
+        module.courier(mapp);
         app.use(ns, mapp);
+        return true;
     }
+    return false;
 }
 
 
@@ -28,7 +31,11 @@ var courier = exports.courier = function(path, app) {
         throw new Error('[path] should be provided!');
     
     if(app) {
-        applyModule(this, path, app);
+        if(!applyModule(this, path, app)) {
+            var mapp = express();
+            app(mapp);
+            this.use(path, mapp);
+        }
         return;
     }
 
@@ -44,9 +51,7 @@ var courier = exports.courier = function(path, app) {
     }
 };
 
-apps.forEach(function(app) {
-    app.courier = courier;
-});
+application.courier = courier;
 
 
 /**
@@ -68,13 +73,7 @@ var placePath = module.exports.placePath = function(app, path, namespace) {
         if(stat.isFile()) {
             if(/\.js$/.test(file)) {
                 var moduleapp = require(fpath);
-                if(moduleapp.handle && moduleapp.set) // is express app
-                    app.use(namespace, moduleapp);
-                else if(typeof moduleapp ===  'function') {
-                    var mapp = express();
-                    moduleapp(mapp);
-                    app.use(namespace, mapp);
-                }
+                applyModule(app, namespace, moduleapp);
             }
         }else if(stat.isDirectory()) {
             placePath(app, fpath, [namespace, basename(fpath)].join('/').replace(/\/\//g, '/').replace(/\/$/, '')); 
